@@ -3,9 +3,9 @@ from django.db import models
 
 # Create your models here.
 JOB_TITLES = [
-    (0, "开发"),
-    (1, "测试"),
-    (2, "产品")
+    (0, "开发工程师"),
+    (1, "测试工程师"),
+    (2, "产品经理")
 ]
 
 JOB_TYPES = [
@@ -31,3 +31,7 @@ class Job(models.Model):
     creator = models.ForeignKey(User, verbose_name="创建人", on_delete=models.SET(None))
     create_time = models.DateTimeField(verbose_name="创建时间", auto_now=True)
     update_time = models.DateTimeField(verbose_name="修改时间", auto_now=True)
+
+    def __str__(self):
+        # 取列表中子元祖的第二个元素
+        return JOB_TITLES[self.job_name][1]

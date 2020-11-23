@@ -1,0 +1,24 @@
+{#继承基础页面#}
+{% extends 'Base.html' %} }
+
+{% block content %}
+    终于等到你,菜鸟..........
+
+    <div>
+        {% if job_list %}
+        <ul>
+            {% for job in job_list %}
+                <li>{{ job.job_type }} <a href="/job/{{ job.id }}/" style="color: aqua"> {{ job.job_name }} </a> {{ job.city }} </li>
+        {% endfor %}
+        </ul>
+
+
+
+    {% else %}
+        <p>没有你的职位, 再见</p>
+    {% endif %}
+    </div>
+
+
+
+{% endblock %}

@@ -1,9 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.template import loader
 # Create your views here.
 from django.views import View
-from .models import Job,  JOB_CITIES, JOB_TITLES,JOB_TYPES
+from .models import Job, JOB_CITIES, JOB_TITLES, JOB_TYPES
 
 
 def job_list(request):
@@ -21,3 +21,13 @@ def job_list(request):
         job.city = JOB_CITIES[job.city][1]
         job.job_type = JOB_TYPES[job.job_type][1]
     return HttpResponse(template.render(content))
+
+
+def detail(request, job_id):
+    try:
+        job = Job.objects.get(pk=job_id)
+        job.city = JOB_CITIES[job.city][1]
+    except Job.DoesNotExist:
+        raise Http404("Job 不存在")
+
+    return render(request, template_name="Job.html", context={"job": job})

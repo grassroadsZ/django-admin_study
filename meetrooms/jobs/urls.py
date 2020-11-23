@@ -4,8 +4,9 @@
 # @File    : urls.py
 from django.conf.urls import url
 
-from .views import job_list
+from . import views
 
 urlpatterns = [
-    url("^joblist/", job_list, name="joblist"),
+    url("^joblist/", views.job_list, name="joblist"),
+    url("^job/(?P<job_id>\d+)/$", views.detail, name="detail"),
 ]

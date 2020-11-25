@@ -1,0 +1,38 @@
+{% extends 'Base.html' %}
+{% block content %}
+{#    居中，百分之五十大小#}
+    <div style="margin: auto;width: 50%">
+        <a href="/joblist" style="color: blue"> 返回职位列表</a>
+        {% if job %}
+            <div class="position_name">
+                <h2> 岗位名称: {{ job.job_name }} </h2>
+                城市:
+                <p>{{  job.city }}</p>
+            </div>
+            <hr>
+
+            <div class="position_responsibility" style="width: 600px">
+                <h2> 工作描述: <br>{{ job.job_info }} </h2>
+                <p></p>
+            </div>
+            <hr>
+
+            <div class="position_requirement" style="width: 600px">
+                <h2> 工作要求: <br>{{ job.job_requirement }} </h2>
+                <p></p>
+            </div>
+            <hr>
+
+            <div class="apply_position" style="width: 600px">
+                <input type="button" value="申请">
+            </div>
+            <hr>
+
+
+        {% else %}
+            <p> 职位木有了 </p>
+        {% endif %}
+
+
+{% endblock %}
+    </div>

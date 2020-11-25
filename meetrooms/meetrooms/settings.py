@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+from .settings_private import *
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -51,6 +51,27 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# LDAP设置
+LDAP_AUTH_URL = AUTH_SEARCH_BASE
+LDAP_AUTH_USE_TLS = False
+LDAP_AUTH_SEARCH_BASE = AUTH_SEARCH_BASE
+LDAP_AUTH_OBJECT_CLASS = AUTH_OBJECT_CLASS
+
+LDAP_AUTH_USER_FIELDS = {
+    "username": "cn",
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mail",
+}
+
+LDAP_AUTH_USER_LOOKUP_FIELDS = ("user",)
+
+LDAP_AUTH_CLEAN_USER_DATA = "django_python3_ldap.utils.clean_user_data"
+
+LDAP_AUTH_CONNECTION_USERNAME = AUTH_CONNECTION_USERNAME
+LDAP_AUTH_CONNECTION_PASSWORD = AUTH_CONNECTION_PASSWORD
+
 
 ROOT_URLCONF = 'meetrooms.urls'
 
